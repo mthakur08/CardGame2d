@@ -5,6 +5,7 @@ using UnityEngine;
 public class MemoryCard : MonoBehaviour
 {
     [SerializeField] private GameObject cardBack;
+    [SerializeField] private Sprite image;
 
     public void OnMouseDown()
     {
@@ -17,6 +18,7 @@ public class MemoryCard : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        GetComponent<SpriteRenderer>().sprite = image;
 		
 	}
 	
