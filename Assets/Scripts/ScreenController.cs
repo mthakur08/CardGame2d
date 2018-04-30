@@ -17,6 +17,9 @@ public class ScreenController : MonoBehaviour
     {
         Vector3 startPos = originalCard.transform.position;
 
+        int[] numbers = { 0, 0, 1, 1, 2, 2, 3, 3 };
+        numbers = ShuffleArray(numbers);
+
         for(int i =0; i<gridCols; i++)
         {
             for (int j=0; j<gridrows; j++)
@@ -31,8 +34,9 @@ public class ScreenController : MonoBehaviour
                     card = Instantiate(originalCard) as MemoryCard;
                 }
 
-                int iden = Random.Range(0, images.Length);
-                originalCard.SetCard(iden, images[iden]);
+                int index = j * gridCols + i;
+                int iden = numbers[index];
+                card.SetCard(iden, images[iden]);
 
                 float posX = (offsetX * i) + startPos.x;
                 float posY = -(offsetY * j) + startPos.y;
@@ -41,10 +45,22 @@ public class ScreenController : MonoBehaviour
         }
 
 	}
+
+    private int[] ShuffleArray(int[] numbers)
+    {
+        int[] newArray = numbers.Clone() as int[];
+        for( int i=0; i<newArray.Length; i++)
+        {
+            int tmp = newArray[i];
+            int r = Random.Range(i, newArray.Length);
+            newArray[i] = newArray[r];
+            newArray[r] = tmp;
+        }
+        return newArray;
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
 	}
 }
