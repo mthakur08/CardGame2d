@@ -21,9 +21,9 @@ public class MemoryCard : MonoBehaviour
         }
     }
 
-    public void SetCard( int id, Sprite image)
+    public void SetCard( int ident, Sprite image)
     {
-        _id = id;
+        _id = ident;
         GetComponent<SpriteRenderer>().sprite = image;
     }
 

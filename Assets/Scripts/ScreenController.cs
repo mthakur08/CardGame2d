@@ -9,8 +9,8 @@ public class ScreenController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        int id = Random.Range(0, images.Length);
-        originalCard.SetCard(id, images[id]);
+        int iden = Random.Range(0, images.Length);
+        originalCard.SetCard(iden, images[iden]);
 	}
 	
 	// Update is called once per frame
