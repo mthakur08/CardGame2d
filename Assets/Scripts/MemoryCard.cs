@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class MemoryCard : MonoBehaviour
 {
+    [SerializeField] private GameObject cardBack;
+
     public void OnMouseDown()
     {
-        Debug.Log("testing 1 2 3 ");
+        if (cardBack.activeSelf)
+        {
+            cardBack.SetActive(false);
+        }
     }
 
     // Use this for initialization
