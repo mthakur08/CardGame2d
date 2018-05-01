@@ -20,6 +20,8 @@ public class ScreenController : MonoBehaviour
     public const float offsetX = 2.0f;
     public const float offsetY = 2.5f;
 
+    private int _score = 0;
+
 	// Use this for initialization
 
         public void CardRevealed(MemoryCard card)
@@ -31,6 +33,7 @@ public class ScreenController : MonoBehaviour
         else
         {
             _secondrevealed = card;
+            StartCoroutine(CheckMatch());
             Debug.Log("Match: " + (_firstrevealed.id == _secondrevealed.id));
         }
     }
@@ -78,6 +81,25 @@ public class ScreenController : MonoBehaviour
             newArray[r] = tmp;
         }
         return newArray;
+    }
+
+    private IEnumerator CheckMatch()
+    {
+        if (_firstrevealed.id == _secondrevealed.id)
+        {
+            _score++;
+            Debug.Log("Score: " + _score);
+        }
+        else
+        {
+            yield return new WaitForSeconds(2.0f);
+            _firstrevealed.Unreveal();
+            _secondrevealed.Unreveal();
+        }
+
+        _firstrevealed = null;
+        _secondrevealed = null;
+
     }
 	
 	// Update is called once per frame
