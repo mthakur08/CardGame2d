@@ -7,12 +7,33 @@ public class ScreenController : MonoBehaviour
     [SerializeField] private MemoryCard originalCard;
     [SerializeField] private Sprite[] images;
 
+    private MemoryCard _firstrevealed;
+    private MemoryCard _secondrevealed;
+
+    public bool canReveal
+    {
+        get { return _secondrevealed == null; }
+    }
+
     public const int gridrows = 2;
     public const int gridCols = 4;
     public const float offsetX = 2.0f;
     public const float offsetY = 2.5f;
 
 	// Use this for initialization
+
+        public void CardRevealed(MemoryCard card)
+    {
+        if(_firstrevealed == null)
+        {
+            _firstrevealed = card;
+        }
+        else
+        {
+            _secondrevealed = card;
+            Debug.Log("Match: " + (_firstrevealed.id == _secondrevealed.id));
+        }
+    }
 	void Start ()
     {
         Vector3 startPos = originalCard.transform.position;
