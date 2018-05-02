@@ -101,6 +101,11 @@ public class ScreenController : MonoBehaviour
         _secondrevealed = null;
 
     }
+
+    public void Restart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("FirstBuild");
+    }
 	
 	// Update is called once per frame
 	void Update ()
