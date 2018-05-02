@@ -6,6 +6,7 @@ public class ScreenController : MonoBehaviour
 {
     [SerializeField] private MemoryCard originalCard;
     [SerializeField] private Sprite[] images;
+    [SerializeField] private TextMesh scoreLabel;
 
     private MemoryCard _firstrevealed;
     private MemoryCard _secondrevealed;
@@ -34,7 +35,6 @@ public class ScreenController : MonoBehaviour
         {
             _secondrevealed = card;
             StartCoroutine(CheckMatch());
-            Debug.Log("Match: " + (_firstrevealed.id == _secondrevealed.id));
         }
     }
 	void Start ()
@@ -88,11 +88,11 @@ public class ScreenController : MonoBehaviour
         if (_firstrevealed.id == _secondrevealed.id)
         {
             _score++;
-            Debug.Log("Score: " + _score);
+            scoreLabel.text = "Score: " + _score;
         }
         else
         {
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(0.5f);
             _firstrevealed.Unreveal();
             _secondrevealed.Unreveal();
         }
